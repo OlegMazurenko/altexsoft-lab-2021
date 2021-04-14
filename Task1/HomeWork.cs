@@ -20,14 +20,21 @@ namespace Task1
             var clientsArray = clients.ToArray();
             var pricesArray = prices.ToArray();
             var currenciesArray = currencies.ToArray();
-            var streetsArray = destinations.ToArray();
+            var streetsArray = new string[5];
             for (int i = 0; i < destinationsArray.Length; i++)
             {
                 string destinationsArrayStreet = destinationsArray[i];
                 var streetArray = destinationsArrayStreet.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
                 var street = streetArray[0];
                 var streetName = street.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-                streetsArray[i] = streetName[1];
+                for (int j = 1; j < streetName.Length; j++)
+                {
+                    if (j > 1)
+                    {
+                        streetsArray[i] += " ";
+                    }
+                    streetsArray[i] += streetName[j];
+                }
             }
 
             if (destinationsArray.Length != clientsArray.Length || 
