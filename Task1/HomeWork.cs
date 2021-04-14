@@ -20,7 +20,7 @@ namespace Task1
             var clientsArray = clients.ToArray();
             var pricesArray = prices.ToArray();
             var currenciesArray = currencies.ToArray();
-            var streetsArray = new string[5];
+            var streetsArray = new string[destinationsArray.Length];
             for (int i = 0; i < destinationsArray.Length; i++)
             {
                 string destinationsArrayStreet = destinationsArray[i];
