@@ -21,27 +21,21 @@ namespace Task1
             var pricesArray = prices.ToArray();
             var currenciesArray = currencies.ToArray();
             var streetsArray = new string[destinationsArray.Length];
-            for (int i = 0; i < destinationsArray.Length; i++)
-            {
-                string destinationsArrayStreet = destinationsArray[i];
-                var streetArray = destinationsArrayStreet.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-                var street = streetArray[0];
-                var streetName = street.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-                for (int j = 1; j < streetName.Length; j++)
-                {
-                    if (j > 1)
-                    {
-                        streetsArray[i] += " ";
-                    }
-                    streetsArray[i] += streetName[j];
-                }
-            }
 
-            if (destinationsArray.Length != clientsArray.Length || 
-                destinationsArray.Length != pricesArray.Length || 
+            if (destinationsArray.Length != clientsArray.Length ||
+                destinationsArray.Length != pricesArray.Length ||
                 destinationsArray.Length != currenciesArray.Length)
             {
                 throw new Exception("destinations, clients, prices and currencies must have same lengths");
+            }
+
+            for (int i = 0; i < destinationsArray.Length; i++)
+            {
+                var destinationsArrayStreet = destinationsArray[i];
+                var streetArray = destinationsArrayStreet.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                var street = streetArray[0];
+                var streetName = street.Split(" ").Select(x => x.Trim()).ToArray();
+                streetsArray[i] = string.Join(" ", streetName.Skip(1));
             }
 
             for (int i = 0; i < destinationsArray.Length; i++)
