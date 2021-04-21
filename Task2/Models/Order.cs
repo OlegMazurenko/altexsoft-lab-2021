@@ -8,7 +8,12 @@ namespace Task2.Models
     {
         public int UserId { get; set; }
         public string Address { get; set; }
-        public List<Product> ProductList { get; set; }
+        public IList<Product> Products { get; set; }
         public decimal TotalPrice { get; set; }
+
+        public Order()
+        {
+            Products = new List<Product>();
+        }
     }
 }
