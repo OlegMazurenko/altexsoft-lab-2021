@@ -4,15 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DeliveryService.Controllers;
+using DeliveryService.Interfaces;
 using DeliveryService.Models;
 
 namespace DeliveryService
 {
-    public class Menu
+    public class Presenter : IPresenter
     {
-        public void ShowMenu()
+        public void ShowMenu(IProductController productController)
         {
-            var productController = new ProductController();
             bool end = false;
             while (!end)
             {
@@ -47,7 +47,7 @@ namespace DeliveryService
             }
         }
 
-        public void MakeOrder(ProductController productController)
+        public void MakeOrder(IProductController productController)
         {
             bool goToOrder = false;
             var productsToOrder = new List<Product>();
@@ -92,7 +92,7 @@ namespace DeliveryService
             Console.WriteLine("Заказ успешно сделан!");
         }
 
-        public void CreateProduct(ProductController productController)
+        public void CreateProduct(IProductController productController)
         {
             Console.WriteLine("Добавление нового продукта");
             Console.WriteLine("Введите название продукта:");

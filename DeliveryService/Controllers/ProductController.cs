@@ -3,27 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DeliveryService.Interfaces;
 using DeliveryService.Models;
 
 namespace DeliveryService.Controllers
 {
-    public class ProductController
+    public class ProductController : IProductController
     {
-        public List<Product> GetProducts()
+        private readonly IStoreContext storeContext;
+
+        public ProductController(IStoreContext storeContext)
         {
-            var products = new List<Product>();
-            var product1 = new Product("Product1", "description", 10, "Seller1");
-            var product2 = new Product("Product2", "description", 20, "Seller2");
-            var product3 = new Product("Product3", "description", 30, "Seller3");
-            products.Add(product1);
-            products.Add(product2);
-            products.Add(product3);
-            return products;
+            this.storeContext = storeContext;
+        }
+
+        public IList<Product> GetProducts()
+        {
+            return storeContext.GetProducts();
         }
 
         public void CreateProduct(Product product)
         {
-            
+            storeContext.SetProduct(product);
         }
     }
 }
