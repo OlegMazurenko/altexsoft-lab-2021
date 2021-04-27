@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DeliveryService.Data
 {
-    class StoreContext : IStoreContext
+    public class StoreContext : IStoreContext
     {
         public IList<Product> Products { get; set; }
 

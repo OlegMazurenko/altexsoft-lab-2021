@@ -19,30 +19,26 @@ namespace DeliveryService
                 Console.WriteLine("\r\nDeliveryService");
                 Console.WriteLine("Введите 1, чтобы войти как покупатель");
                 Console.WriteLine("Введите 2, чтобы войти как продавец");
-                Console.WriteLine("Введите 0, чтобы выйти");
-                string input = Console.ReadLine();
+                Console.WriteLine("Введите 3, чтобы выйти");
+                int.TryParse(Console.ReadLine(), out var number);
 
-                try
+                switch (number)
                 {
-                    switch (Convert.ToInt32(input))
-                    {
-                        case 1:
-                            MakeOrder(productController);
-                            break;
-                        case 2:
-                            CreateProduct(productController);
-                            break;
-                        case 0:
-                            end = true;
-                            break;
-                        default:
-                            Console.WriteLine("Введен неправильный номер");
-                            break;
-                    }
-                }
-                catch
-                {
-                    Console.WriteLine("Введены некорректные данные");
+                    case 1:
+                        MakeOrder(productController);
+                        break;
+                    case 2:
+                        CreateProduct(productController);
+                        break;
+                    case 3:
+                        end = true;
+                        break;
+                    case 0:
+                        Console.WriteLine("Нужно ввести число от 1 до 3");
+                        break;
+                    default:
+                        Console.WriteLine("Введен неправильный номер");
+                        break;
                 }
             }
         }
@@ -79,9 +75,9 @@ namespace DeliveryService
                     }
                 }
                 Console.WriteLine("Введите 1, чтобы перейти к оформлению заказа");
-                Console.WriteLine("Введите любое другое число, чтобы добавить в заказ другие товары");
-                var input1 = Convert.ToInt32(Console.ReadLine());
-                if (input1 == 1)
+                Console.WriteLine("Или введите любой другой символ, чтобы добавить в заказ другие товары");
+                int.TryParse(Console.ReadLine(), out var number);
+                if (number == 1)
                 {
                     goToOrder = true;
                 }
