@@ -11,7 +11,14 @@ namespace DeliveryService
 {
     public class Presenter : IPresenter
     {
-        public void ShowMenu(IProductController productController)
+        private readonly IProductController productController;
+        
+        public Presenter(IProductController productController)
+        {
+            this.productController = productController;
+        }
+
+        public void ShowMenu()
         {
             bool end = false;
             while (!end)
@@ -25,10 +32,10 @@ namespace DeliveryService
                 switch (number)
                 {
                     case 1:
-                        MakeOrder(productController);
+                        MakeOrder();
                         break;
                     case 2:
-                        CreateProduct(productController);
+                        CreateProduct();
                         break;
                     case 3:
                         end = true;
@@ -43,7 +50,7 @@ namespace DeliveryService
             }
         }
 
-        public void MakeOrder(IProductController productController)
+        public void MakeOrder()
         {
             bool goToOrder = false;
             var productsToOrder = new List<Product>();
@@ -88,7 +95,7 @@ namespace DeliveryService
             Console.WriteLine("Заказ успешно сделан!");
         }
 
-        public void CreateProduct(IProductController productController)
+        public void CreateProduct()
         {
             Console.WriteLine("Добавление нового продукта");
             Console.WriteLine("Введите название продукта:");

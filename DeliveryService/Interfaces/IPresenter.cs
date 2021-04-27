@@ -9,6 +9,6 @@ namespace DeliveryService.Interfaces
 {
     public interface IPresenter
     {
-        void ShowMenu(IProductController productController);
+        void ShowMenu();
     }
 }

@@ -17,8 +17,8 @@ namespace DeliveryService
             productController.CreateProduct(new Product("Product2", "description", 20, "Seller2"));
             productController.CreateProduct(new Product("Product3", "description", 30, "Seller3"));
 
-            var presenter = new Presenter();
-            presenter.ShowMenu(productController);
+            var presenter = new Presenter(productController);
+            presenter.ShowMenu();
         }
     }
 }
