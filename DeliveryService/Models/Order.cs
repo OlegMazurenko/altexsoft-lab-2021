@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Task2.Models
+namespace DeliveryService.Models
 {
     public class Order : BaseModel
     {
@@ -11,9 +11,10 @@ namespace Task2.Models
         public IList<Product> Products { get; set; }
         public decimal TotalPrice { get; set; }
 
-        public Order()
+        public Order(string address, List<Product> products)
         {
-            Products = new List<Product>();
+            Products = products;
+            Address = address;
         }
     }
 }
