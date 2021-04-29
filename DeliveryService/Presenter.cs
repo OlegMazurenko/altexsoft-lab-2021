@@ -40,11 +40,8 @@ namespace DeliveryService
                     case 3:
                         end = true;
                         break;
-                    case 0:
-                        Console.WriteLine("Нужно ввести число от 1 до 3");
-                        break;
                     default:
-                        Console.WriteLine("Введен неправильный номер");
+                        Console.WriteLine("Нужно ввести число от 1 до 3");
                         break;
                 }
             }
