@@ -105,6 +105,7 @@ namespace DeliveryService
                 else
                 {
                     Console.WriteLine("Адресс не соответствует формату. Попробуйте еще раз.");
+                    Console.WriteLine("Пример: улица Серебряная, д.23, кв.89");
                 }
             }
             var order = new Order(inputAdress, productsToOrder);
@@ -141,6 +142,7 @@ namespace DeliveryService
                 else
                 {
                     Console.WriteLine("Email не соответствует формату. Попробуйте еще раз.");
+                    Console.WriteLine("Пример: example@gmail.com");
                 }
             }
             Console.WriteLine("Придумайте пароль:");
@@ -158,6 +160,7 @@ namespace DeliveryService
                 else
                 {
                     Console.WriteLine("Номер телефона не соответствует формату. Попробуйте еще раз.");
+                    Console.WriteLine("Пример: +380952223388");
                 }
             }
             var user = new User(email, password, name, phoneNumber);
