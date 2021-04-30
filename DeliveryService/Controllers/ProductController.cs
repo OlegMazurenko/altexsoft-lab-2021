@@ -19,12 +19,13 @@ namespace DeliveryService.Controllers
 
         public IList<Product> GetProducts()
         {
-            return storeContext.GetProducts();
+            return storeContext.Products;
         }
 
         public void CreateProduct(Product product)
         {
-            storeContext.SetProduct(product);
+            product.Id = storeContext.Products.Count > 0 ? storeContext.Products[storeContext.Products.Count - 1].Id + 1 : 0;
+            storeContext.Products.Add(product);
         }
     }
 }

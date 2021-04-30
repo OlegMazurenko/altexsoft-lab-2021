@@ -11,21 +11,14 @@ namespace DeliveryService.Data
     public class StoreContext : IStoreContext
     {
         public IList<Product> Products { get; set; }
+        public IList<User> Users { get; set; }
+        public IList<Order> Orders { get; set; }
 
         public StoreContext()
         {
             Products = new List<Product>();
-        }
-
-        public IList<Product> GetProducts()
-        {
-            return Products;
-        }
-
-        public void SetProduct(Product product)
-        {
-            product.Id = Products.Count > 0 ? Products[Products.Count - 1].Id + 1 : 0;
-            Products.Add(product);
+            Users = new List<User>();
+            Orders = new List<Order>();
         }
     }
 }

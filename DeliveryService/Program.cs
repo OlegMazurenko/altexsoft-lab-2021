@@ -12,12 +12,14 @@ namespace DeliveryService
         {
             var context = new StoreContext();
             var productController = new ProductController(context);
+            var userController = new UserController(context);
+            var orderController = new OrderController(context);
 
             productController.CreateProduct(new Product("Product1", "description", 10, "Seller1"));
             productController.CreateProduct(new Product("Product2", "description", 20, "Seller2"));
             productController.CreateProduct(new Product("Product3", "description", 30, "Seller3"));
 
-            var presenter = new Presenter(productController);
+            var presenter = new Presenter(productController, userController, orderController);
             presenter.ShowMenu();
         }
     }
