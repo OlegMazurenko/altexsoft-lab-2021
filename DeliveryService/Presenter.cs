@@ -96,7 +96,7 @@ namespace DeliveryService
             string inputAdress;
             while (true)
             {
-                Console.WriteLine("Введите адресс доставки:");
+                Console.WriteLine("Введите адрес доставки:");
                 inputAdress = Console.ReadLine();
                 if (inputAdress.IsValidAddress())
                 {
@@ -104,7 +104,7 @@ namespace DeliveryService
                 }
                 else
                 {
-                    Console.WriteLine("Адресс не соответствует формату. Попробуйте еще раз.");
+                    Console.WriteLine("Адрес не соответствует формату. Попробуйте еще раз.");
                     Console.WriteLine("Пример: улица Серебряная, д.23, кв.89");
                 }
             }
@@ -153,7 +153,7 @@ namespace DeliveryService
             {
                 Console.WriteLine("Введите ваш номер телефона:");
                 phoneNumber = Console.ReadLine();
-                if (phoneNumber.IsValidNumber())
+                if (phoneNumber.IsValidPhoneNumber())
                 {
                     break;
                 }

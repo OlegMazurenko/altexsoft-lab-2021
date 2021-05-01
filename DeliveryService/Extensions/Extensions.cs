@@ -9,7 +9,7 @@ namespace DeliveryService.Extensions
 {
     public static class Extensions
     {
-        public static bool IsValidNumber(this string number)
+        public static bool IsValidPhoneNumber(this string number)
         {
             var pattern = @"^[+]?[3]?[8]?0[(]?[0-9]{2}[)]?[\s]?[0-9]{3}[\s]?[0-9]{2}[\s]?[0-9]{2}$";
             var expression = new Regex(pattern);
