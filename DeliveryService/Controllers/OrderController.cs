@@ -17,6 +17,7 @@ namespace DeliveryService.Controllers
 
         public void CreateOrder(Order order)
         {
+            order.Id = storeContext.Orders.Count > 0 ? storeContext.Orders.Max(x => x.Id) + 1 : 1;
             storeContext.Orders.Add(order);
         }
     }
