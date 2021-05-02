@@ -123,7 +123,7 @@ namespace DeliveryService
             Console.WriteLine("Введите цену продукта:");
             var productPrice = Convert.ToDecimal(Console.ReadLine());
             var newProduct = new Product(productName, productDescription, productPrice, "SellerName");
-            productController.CreateProduct(newProduct);
+            productController.AddProduct(newProduct);
             Console.WriteLine("Товар успешно добавлен!");
         }
 

@@ -22,9 +22,9 @@ namespace DeliveryService.Controllers
             return storeContext.Products;
         }
 
-        public void CreateProduct(Product product)
+        public void AddProduct(Product product)
         {
-            product.Id = storeContext.Products.Count > 0 ? storeContext.Products[storeContext.Products.Count - 1].Id + 1 : 0;
+            product.Id = storeContext.Products.Count > 0 ? storeContext.Products.Max(x => x.Id) + 1 : 1;
             storeContext.Products.Add(product);
         }
     }

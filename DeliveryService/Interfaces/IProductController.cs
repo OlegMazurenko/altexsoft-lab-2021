@@ -7,6 +7,6 @@ namespace DeliveryService.Interfaces
     public interface IProductController
     {
         IList<Product> GetProducts();
-        void CreateProduct(Product product);
+        void AddProduct(Product product);
     }
 }

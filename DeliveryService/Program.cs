@@ -15,9 +15,9 @@ namespace DeliveryService
             var userController = new UserController(context);
             var orderController = new OrderController(context);
 
-            productController.CreateProduct(new Product("Product1", "description", 10, "Seller1"));
-            productController.CreateProduct(new Product("Product2", "description", 20, "Seller2"));
-            productController.CreateProduct(new Product("Product3", "description", 30, "Seller3"));
+            productController.AddProduct(new Product("Product1", "description", 10, "Seller1"));
+            productController.AddProduct(new Product("Product2", "description", 20, "Seller2"));
+            productController.AddProduct(new Product("Product3", "description", 30, "Seller3"));
 
             var presenter = new Presenter(productController, userController, orderController);
             presenter.ShowMenu();
