@@ -6,6 +6,6 @@ namespace DeliveryService.Interfaces
 {
     public interface IOrderController
     {
-        void CreateOrder(Order order);
+        void AddOrder(Order order);
     }
 }

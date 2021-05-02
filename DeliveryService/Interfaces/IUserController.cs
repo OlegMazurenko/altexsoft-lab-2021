@@ -6,6 +6,6 @@ namespace DeliveryService.Interfaces
 {
     public interface IUserController
     {
-        void CreateUser(User user);
+        void AddUser(User user);
     }
 }

@@ -15,7 +15,7 @@ namespace DeliveryService.Controllers
             this.storeContext = storeContext;
         }
 
-        public void CreateUser(User user)
+        public void AddUser(User user)
         {
             user.Id = storeContext.Users.Count > 0 ? storeContext.Users.Max(x => x.Id) + 1 : 1;
             storeContext.Users.Add(user);

@@ -109,7 +109,7 @@ namespace DeliveryService
                 }
             }
             var order = new Order(inputAdress, productsToOrder);
-            orderController.CreateOrder(order);
+            orderController.AddOrder(order);
             Console.WriteLine("Заказ успешно сделан!");
         }
 
@@ -164,7 +164,7 @@ namespace DeliveryService
                 }
             }
             var user = new User(email, password, name, phoneNumber);
-            userController.CreateUser(user);
+            userController.AddUser(user);
         }
     }
 }
