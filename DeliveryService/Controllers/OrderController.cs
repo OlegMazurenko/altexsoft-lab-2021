@@ -6,7 +6,7 @@ using DeliveryService.Models;
 
 namespace DeliveryService.Controllers
 {
-    class OrderController : IOrderController
+    public class OrderController : IOrderController
     {
         private readonly IStoreContext storeContext;
 

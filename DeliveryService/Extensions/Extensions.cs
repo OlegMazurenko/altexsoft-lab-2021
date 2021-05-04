@@ -25,7 +25,7 @@ namespace DeliveryService.Extensions
 
         public static bool IsValidAddress(this string address)
         {
-            var pattern = @"^ул(ица\s|[.][\s]?){1}[А-Яа-я]{5}[А-Яа-я\s]*[.,]{1}[\s]?д(ом|[.]){1}[\s]?[0-9]{1,3}(,[\s]?кв(артира|[.]){1}[\s]?[0-9]{1,3})?$";
+            var pattern = @"^ул(ица\s|[.][\s]?){1}[А-Яа-я]{5}[А-Яа-я\s]*[.,]{1}[\s]?д(ом|[.]){1}[\s]?[0-9]{1,3}(,[\s]?кв(артира|[.]){1}[\s]?[0-9]{1,4})?$";
             var expression = new Regex(pattern, RegexOptions.IgnoreCase);
             return expression.IsMatch(address);
         }
