@@ -6,16 +6,21 @@ using System.Threading.Tasks;
 using DeliveryService.Controllers;
 using DeliveryService.Interfaces;
 using DeliveryService.Models;
+using DeliveryService.Extensions;
 
 namespace DeliveryService
 {
     public class Presenter : IPresenter
     {
         private readonly IProductController productController;
+        private readonly IUserController userController;
+        private readonly IOrderController orderController;
         
-        public Presenter(IProductController productController)
+        public Presenter(IProductController productController, IUserController userController, IOrderController orderController)
         {
             this.productController = productController;
+            this.userController = userController;
+            this.orderController = orderController;
         }
 
         public void ShowMenu()
@@ -40,11 +45,8 @@ namespace DeliveryService
                     case 3:
                         end = true;
                         break;
-                    case 0:
-                        Console.WriteLine("Нужно ввести число от 1 до 3");
-                        break;
                     default:
-                        Console.WriteLine("Введен неправильный номер");
+                        Console.WriteLine("Нужно ввести число от 1 до 3");
                         break;
                 }
             }
@@ -89,9 +91,25 @@ namespace DeliveryService
                     goToOrder = true;
                 }
             }
-            Console.WriteLine("Введите адресс доставки:");
-            var inputAdress = Console.ReadLine();
+            Console.WriteLine("Для оформления заказа необходимо зарегистрироваться:");
+            RegisterUser();
+            string inputAdress;
+            while (true)
+            {
+                Console.WriteLine("Введите адрес доставки:");
+                inputAdress = Console.ReadLine();
+                if (inputAdress.IsValidAddress())
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Адрес не соответствует формату. Попробуйте еще раз.");
+                    Console.WriteLine("Пример: улица Серебряная, д.23, кв.89");
+                }
+            }
             var order = new Order(inputAdress, productsToOrder);
+            orderController.AddOrder(order);
             Console.WriteLine("Заказ успешно сделан!");
         }
 
@@ -105,8 +123,48 @@ namespace DeliveryService
             Console.WriteLine("Введите цену продукта:");
             var productPrice = Convert.ToDecimal(Console.ReadLine());
             var newProduct = new Product(productName, productDescription, productPrice, "SellerName");
-            productController.CreateProduct(newProduct);
+            productController.AddProduct(newProduct);
             Console.WriteLine("Товар успешно добавлен!");
+        }
+
+        public void RegisterUser()
+        {
+            string email;
+            string phoneNumber;
+            while (true)
+            {
+                Console.WriteLine("Введите ваш Email:");
+                email = Console.ReadLine();
+                if (email.IsValidEmail())
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Email не соответствует формату. Попробуйте еще раз.");
+                    Console.WriteLine("Пример: example@gmail.com");
+                }
+            }
+            Console.WriteLine("Придумайте пароль:");
+            var password = Console.ReadLine();
+            Console.WriteLine("Введите ваше имя:");
+            var name = Console.ReadLine();
+            while (true)
+            {
+                Console.WriteLine("Введите ваш номер телефона:");
+                phoneNumber = Console.ReadLine();
+                if (phoneNumber.IsValidPhoneNumber())
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Номер телефона не соответствует формату. Попробуйте еще раз.");
+                    Console.WriteLine("Пример: +380952223388");
+                }
+            }
+            var user = new User(email, password, name, phoneNumber);
+            userController.AddUser(user);
         }
     }
 }
