@@ -10,13 +10,15 @@ namespace DeliveryService.Models
         public string Email { get; set; }
         public string Password { get; set; }
         public string Name { get; set; }
+        public string AccessLevel { get; set; }
 
-        public User(string email, string password, string name, string phoneNumber)
+        public User(string email, string password, string name, string phoneNumber, string accessLevel)
         {
             Email = email;
             Password = password;
             Name = name;
             PhoneNumber = phoneNumber;
+            AccessLevel = accessLevel;
         }
     }
 }

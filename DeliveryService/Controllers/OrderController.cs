@@ -18,6 +18,11 @@ namespace DeliveryService.Controllers
         public void AddOrder(Order order)
         {
             order.Id = storeContext.Orders.Count > 0 ? storeContext.Orders.Max(x => x.Id) + 1 : 1;
+            order.UserId = storeContext.CurrentUser.Id;
+            foreach (var product in order.Products)
+            {
+                order.TotalPrice += product.Price;
+            }
             storeContext.Orders.Add(order);
         }
     }
