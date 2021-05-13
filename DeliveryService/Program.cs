@@ -11,9 +11,10 @@ namespace DeliveryService
         static void Main(string[] args)
         {
             var context = new StoreContext();
-            var productController = new ProductController(context);
-            var userController = new UserController(context);
-            var orderController = new OrderController(context);
+            var logger = new Logger();
+            var productController = new ProductController(context, logger);
+            var userController = new UserController(context, logger);
+            var orderController = new OrderController(context, logger);
 
             productController.AddProduct(new Product("Product1", "description", 10));
             productController.AddProduct(new Product("Product2", "description", 20));

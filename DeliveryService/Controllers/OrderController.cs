@@ -9,10 +9,12 @@ namespace DeliveryService.Controllers
     public class OrderController : IOrderController
     {
         private readonly IStoreContext storeContext;
+        private readonly ILogger logger;
 
-        public OrderController(IStoreContext storeContext)
+        public OrderController(IStoreContext storeContext, ILogger logger)
         {
             this.storeContext = storeContext;
+            this.logger = logger;
         }
 
         public void AddOrder(Order order)
@@ -24,6 +26,14 @@ namespace DeliveryService.Controllers
                 order.TotalPrice += product.Price;
             }
             storeContext.Orders.Add(order);
+            if (storeContext.CurrentUser is not null)
+            {
+                logger.Log($"Пользователь ({storeContext.CurrentUser.Email}) добавил новый заказ (ID: {order.Id})");
+            }
+            else
+            {
+                logger.Log($"Добавлен новый заказ (ID: {order.Id})");
+            }
         }
     }
 }

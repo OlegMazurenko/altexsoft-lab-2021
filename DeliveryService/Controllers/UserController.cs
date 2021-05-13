@@ -9,16 +9,19 @@ namespace DeliveryService.Controllers
     public class UserController : IUserController
     {
         private readonly IStoreContext storeContext;
+        private readonly ILogger logger;
 
-        public UserController(IStoreContext storeContext)
+        public UserController(IStoreContext storeContext, ILogger logger)
         {
             this.storeContext = storeContext;
+            this.logger = logger;
         }
 
         public void AddUser(User user)
         {
             user.Id = storeContext.Users.Count > 0 ? storeContext.Users.Max(x => x.Id) + 1 : 1;
             storeContext.Users.Add(user);
+            logger.Log($"Создан новый пользователь ({user.Email}).");
         }
 
         public bool UserExists(string email, string password)
@@ -31,7 +34,7 @@ namespace DeliveryService.Controllers
                     if (user.Email == email && user.Password == password)
                     {
                         isExist = true;
-                        storeContext.CurrentUser = user;
+                        SetCurrentUser(user);
                     }
                 }
             }
@@ -46,6 +49,7 @@ namespace DeliveryService.Controllers
         public void SetCurrentUser(User user)
         {
             storeContext.CurrentUser = user;
+            logger.Log($"Пользователь ({user.Email}) вошел в систему.");
         }
 
         public void SignOutUser()
