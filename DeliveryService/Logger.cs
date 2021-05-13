@@ -18,10 +18,5 @@ namespace DeliveryService
             using var stream = new StreamWriter(file, Encoding.UTF8);
             stream.WriteLine(text);
         }
-
-        public void AppendLineToFile()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

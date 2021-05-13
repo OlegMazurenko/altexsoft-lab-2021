@@ -9,6 +9,5 @@ namespace DeliveryService.Interfaces
     public interface ILogger
     {
         void Log(string text);
-        void AppendLineToFile();
     }
 }
