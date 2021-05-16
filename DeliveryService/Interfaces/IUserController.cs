@@ -8,8 +8,8 @@ namespace DeliveryService.Interfaces
     {
         void AddUser(User user);
         User GetCurrentUser();
-        bool CurrentUserExists();
-        bool UserExists(string email, string password);
+        bool CurrentUserIsExists();
+        bool UserIsExists(string email, string password);
         void SignOutUser();
     }
 }

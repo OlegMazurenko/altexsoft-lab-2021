@@ -28,9 +28,13 @@ namespace DeliveryService.Controllers
         {
             product.Id = storeContext.Products.Count > 0 ? storeContext.Products.Max(x => x.Id) + 1 : 1;
             storeContext.Products.Add(product);
+            if (storeContext.CurrentUser.AccessLevel == "Seller")
+            {
+                product.SellerId = storeContext.CurrentUser.Id;
+            }
             if (storeContext.CurrentUser is not null)
             {
-                logger.Log($"Пользователь ({storeContext.CurrentUser.Email}) добавил новый товар {product.Name}");
+                logger.Log($"Пользователь ({storeContext.CurrentUser.Email}) добавил новый товар ({product.Name})");
             }
             else
             {

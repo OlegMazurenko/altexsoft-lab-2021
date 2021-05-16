@@ -24,7 +24,7 @@ namespace DeliveryService.Controllers
             logger.Log($"Создан новый пользователь ({user.Email}).");
         }
 
-        public bool UserExists(string email, string password)
+        public bool UserIsExists(string email, string password)
         {
             var isExist = false;
             if (storeContext.Users is not null)
@@ -57,7 +57,7 @@ namespace DeliveryService.Controllers
             storeContext.CurrentUser = null;
         }
 
-        public bool CurrentUserExists()
+        public bool CurrentUserIsExists()
         {
             return storeContext.CurrentUser is not null;
         }

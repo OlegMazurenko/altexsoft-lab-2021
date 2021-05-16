@@ -28,7 +28,7 @@ namespace DeliveryService
             var end = false;
             while (true)
             {
-                if (!userController.CurrentUserExists())
+                if (!userController.CurrentUserIsExists())
                 {
                     while (!end)
                     {
@@ -52,7 +52,7 @@ namespace DeliveryService
                                 Console.WriteLine("Нужно ввести число от 1 до 3");
                                 continue;
                         }
-                        if (userController.CurrentUserExists())
+                        if (userController.CurrentUserIsExists())
                         {
                             break;
                         }
@@ -86,7 +86,7 @@ namespace DeliveryService
                 }
                 Console.WriteLine("Введите пароль:");
                 var password = Console.ReadLine();
-                if (userController.UserExists(email, password))
+                if (userController.UserIsExists(email, password))
                 {
                     break;
                 }
