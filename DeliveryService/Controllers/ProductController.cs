@@ -28,7 +28,7 @@ namespace DeliveryService.Controllers
         {
             product.Id = storeContext.Products.Count > 0 ? storeContext.Products.Max(x => x.Id) + 1 : 1;
             storeContext.Products.Add(product);
-            if (storeContext.CurrentUser.AccessLevel == "Seller")
+            if (storeContext.CurrentUser is not null && storeContext.CurrentUser.AccessLevel == "Seller")
             {
                 product.SellerId = storeContext.CurrentUser.Id;
             }
