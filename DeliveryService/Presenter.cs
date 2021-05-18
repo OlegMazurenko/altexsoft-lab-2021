@@ -62,12 +62,12 @@ namespace DeliveryService
                 {
                     break;
                 }
-                switch (userController.GetCurrentUser().AccessLevel)
+                switch (userController.GetCurrentUser().Access)
                 {
-                    case "Buyer":
+                    case User.AccessLevel.Buyer:
                         ShowBuyersMenu();
                         break;
-                    case "Seller":
+                    case User.AccessLevel.Seller:
                         ShowSellersMenu();
                         break;
                 }
@@ -257,7 +257,7 @@ namespace DeliveryService
                     Console.WriteLine("Пример: +380952223388");
                 }
             }
-            var user = new User(email, password, name, phoneNumber, "Buyer");
+            var user = new User(email, password, name, phoneNumber, User.AccessLevel.Buyer);
             userController.AddUser(user);
             Console.WriteLine("Регистрация выполнена. Теперь вы можете войти в аккаунт.");
         }
