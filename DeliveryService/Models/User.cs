@@ -19,13 +19,13 @@ namespace DeliveryService.Models
             Seller
         }
 
-        public User(string email, string password, string name, string phoneNumber, AccessLevel accessLevel)
+        public User(string email, string password, string name, string phoneNumber, AccessLevel access)
         {
             Email = email;
             Password = password;
             Name = name;
             PhoneNumber = phoneNumber;
-            Access = accessLevel;
+            Access = access;
         }
     }
 }
