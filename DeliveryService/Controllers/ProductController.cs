@@ -17,6 +17,13 @@ namespace DeliveryService.Controllers
         {
             this.storeContext = storeContext;
             this.logger = logger;
+            if (storeContext.Products.Count == 0)
+            {
+                AddProduct(new Product("Product1", "description", 10));
+                AddProduct(new Product("Product2", "description", 20));
+                AddProduct(new Product("Product3", "description", 30));
+                storeContext.Save();
+            }
         }
 
         public IList<Product> GetProducts()
@@ -28,6 +35,7 @@ namespace DeliveryService.Controllers
         {
             product.Id = storeContext.Products.Count > 0 ? storeContext.Products.Max(x => x.Id) + 1 : 1;
             storeContext.Products.Add(product);
+            storeContext.Save();
             if (storeContext.CurrentUser is not null)
             {
                 if (storeContext.CurrentUser.Access == User.AccessLevel.Seller)

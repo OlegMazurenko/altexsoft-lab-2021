@@ -26,6 +26,7 @@ namespace DeliveryService.Controllers
                 order.TotalPrice += product.Price;
             }
             storeContext.Orders.Add(order);
+            storeContext.Save();
             if (storeContext.CurrentUser is not null)
             {
                 logger.Log($"Пользователь ({storeContext.CurrentUser.Email}) добавил новый заказ (ID: {order.Id})");
