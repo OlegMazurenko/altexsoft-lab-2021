@@ -9,5 +9,6 @@ namespace DeliveryService.Interfaces
         IList<Product> Products { get; set; }
         IList<User> Users { get; set; }
         IList<Order> Orders { get; set; }
+        User CurrentUser { get; set; }
     }
 }

@@ -13,6 +13,7 @@ namespace DeliveryService.Data
         public IList<Product> Products { get; set; }
         public IList<User> Users { get; set; }
         public IList<Order> Orders { get; set; }
+        public User CurrentUser { get; set; }
 
         public StoreContext()
         {

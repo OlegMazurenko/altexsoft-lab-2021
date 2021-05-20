@@ -10,13 +10,22 @@ namespace DeliveryService.Models
         public string Email { get; set; }
         public string Password { get; set; }
         public string Name { get; set; }
+        public AccessLevel Access { get; set; }
 
-        public User(string email, string password, string name, string phoneNumber)
+        public enum AccessLevel
+        {
+            Admin,
+            Buyer,
+            Seller
+        }
+
+        public User(string email, string password, string name, string phoneNumber, AccessLevel access)
         {
             Email = email;
             Password = password;
             Name = name;
             PhoneNumber = phoneNumber;
+            Access = access;
         }
     }
 }

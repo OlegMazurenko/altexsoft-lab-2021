@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DeliveryService.Extensions
 {
-    public static class Extensions
+    public static class ValidationExtensions
     {
         public static bool IsValidPhoneNumber(this string number)
         {

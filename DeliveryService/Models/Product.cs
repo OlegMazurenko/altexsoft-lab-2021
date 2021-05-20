@@ -9,14 +9,13 @@ namespace DeliveryService.Models
         public string Name { get; set; }
         public string Description { get; set; }
         public decimal Price { get; set; }
-        public string Seller { get; set; }
+        public int SellerId { get; set; }
 
-        public Product(string name, string description, decimal price, string seller)
+        public Product(string name, string description, decimal price)
         {
             Name = name;
             Description = description;
             Price = price;
-            Seller = seller;
         }
     }
 }
