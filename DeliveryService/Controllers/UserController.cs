@@ -8,13 +8,13 @@ namespace DeliveryService.Controllers
 {
     public class UserController : IUserController
     {
-        private readonly IStoreContext storeContext;
-        private readonly ILogger logger;
+        private readonly IStoreContext _storeContext;
+        private readonly ILogger _logger;
 
         public UserController(IStoreContext storeContext, ILogger logger)
         {
-            this.storeContext = storeContext;
-            this.logger = logger;
+            _storeContext = storeContext;
+            _logger = logger;
             if (storeContext.Users.Count == 0)
             {
                 AddUser(new User("Seller@ro.ru", "password", "John", "0978884433", User.AccessLevel.Seller));
@@ -25,18 +25,18 @@ namespace DeliveryService.Controllers
 
         public void AddUser(User user)
         {
-            user.Id = storeContext.Users.Count > 0 ? storeContext.Users.Max(x => x.Id) + 1 : 1;
-            storeContext.Users.Add(user);
-            storeContext.Save();
-            logger.Log($"Создан новый пользователь ({user.Email}).");
+            user.Id = _storeContext.Users.Count > 0 ? _storeContext.Users.Max(x => x.Id) + 1 : 1;
+            _storeContext.Users.Add(user);
+            _storeContext.Save();
+            _logger.Log($"Создан новый пользователь ({user.Email}).");
         }
 
         public bool UserIsExists(string email, string password)
         {
             var isExist = false;
-            if (storeContext.Users is not null)
+            if (_storeContext.Users is not null)
             {
-                foreach (var user in storeContext.Users)
+                foreach (var user in _storeContext.Users)
                 {
                     if (user.Email == email && user.Password == password)
                     {
@@ -50,23 +50,23 @@ namespace DeliveryService.Controllers
 
         public User GetCurrentUser()
         {
-            return storeContext.CurrentUser;
+            return _storeContext.CurrentUser;
         }
 
         public void SetCurrentUser(User user)
         {
-            storeContext.CurrentUser = user;
-            logger.Log($"Пользователь ({user.Email}) вошел в систему.");
+            _storeContext.CurrentUser = user;
+            _logger.Log($"Пользователь ({user.Email}) вошел в систему.");
         }
 
         public void SignOutUser()
         {
-            storeContext.CurrentUser = null;
+            _storeContext.CurrentUser = null;
         }
 
         public bool CurrentUserIsExists()
         {
-            return storeContext.CurrentUser is not null;
+            return _storeContext.CurrentUser is not null;
         }
     }
 }
