@@ -11,7 +11,7 @@ namespace DeliveryService.Models
         public IList<Product> Products { get; set; }
         public decimal TotalPrice { get; set; }
 
-        public Order(string address, List<Product> products)
+        public Order(string address, IList<Product> products)
         {
             Products = products;
             Address = address;

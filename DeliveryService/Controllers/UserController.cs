@@ -15,12 +15,19 @@ namespace DeliveryService.Controllers
         {
             this.storeContext = storeContext;
             this.logger = logger;
+            if (storeContext.Users.Count == 0)
+            {
+                AddUser(new User("Seller@ro.ru", "password", "John", "0978884433", User.AccessLevel.Seller));
+                AddUser(new User("Buyer@ro.ru", "password", "Alex", "0975554433", User.AccessLevel.Buyer));
+                storeContext.Save();
+            }
         }
 
         public void AddUser(User user)
         {
             user.Id = storeContext.Users.Count > 0 ? storeContext.Users.Max(x => x.Id) + 1 : 1;
             storeContext.Users.Add(user);
+            storeContext.Save();
             logger.Log($"Создан новый пользователь ({user.Email}).");
         }
 
