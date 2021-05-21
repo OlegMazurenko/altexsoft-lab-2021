@@ -154,8 +154,13 @@ namespace DeliveryService
             var productsToOrder = new List<Product>();
             while (!goToOrder)
             {
-                Console.WriteLine("Список товаров:");
                 var products = _productController.GetProducts();
+                if (products.Count == 0)
+                {
+                    Console.WriteLine("Нет доступных товаров в данный момент");
+                    return;
+                }
+                Console.WriteLine("Список товаров:");
                 Console.WriteLine("Имя | Описание | Цена");
                 foreach (var product in products)
                 {
@@ -164,8 +169,12 @@ namespace DeliveryService
                 var productsToOrderCount = 0;
                 while (productsToOrderCount < 1)
                 {
-                    Console.WriteLine("Введите имя товара, который хотите заказать");
+                    Console.WriteLine("Введите имя товара, который хотите заказать, или введите 0, чтобы вернуться в меню");
                     var inputProductName = Console.ReadLine();
+                    if (inputProductName == "0")
+                    {
+                        return;
+                    }
                     foreach (var product1 in products)
                     {
                         if (product1.Name == inputProductName)
@@ -180,7 +189,7 @@ namespace DeliveryService
                     }
                 }
                 Console.WriteLine("Введите 1, чтобы перейти к оформлению заказа");
-                Console.WriteLine("Или введите любой другой символ, чтобы добавить в заказ другие товары");
+                Console.WriteLine("Введите 2, или любой другой символ, чтобы добавить в заказ другие товары");
                 int.TryParse(Console.ReadLine(), out var number);
                 if (number == 1)
                 {
@@ -215,7 +224,20 @@ namespace DeliveryService
             Console.WriteLine("Введите описание продукта:");
             var productDescription = Console.ReadLine();
             Console.WriteLine("Введите цену продукта:");
-            var productPrice = Convert.ToDecimal(Console.ReadLine());
+            decimal productPrice;
+            while (true)
+            {
+                if (decimal.TryParse(Console.ReadLine(), out var price))
+                {
+                    productPrice = price;
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Неравильный формат цены");
+                    Console.WriteLine("Пример: 50 или 10,75");
+                }
+            }
             var newProduct = new Product(productName, productDescription, productPrice);
             _productController.AddProduct(newProduct);
             Console.WriteLine("Товар успешно добавлен!");

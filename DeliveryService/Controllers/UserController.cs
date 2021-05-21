@@ -15,12 +15,6 @@ namespace DeliveryService.Controllers
         {
             _storeContext = storeContext;
             _logger = logger;
-            if (storeContext.Users.Count == 0)
-            {
-                AddUser(new User("Seller@ro.ru", "password", "John", "0978884433", User.AccessLevel.Seller));
-                AddUser(new User("Buyer@ro.ru", "password", "Alex", "0975554433", User.AccessLevel.Buyer));
-                storeContext.Save();
-            }
         }
 
         public void AddUser(User user)
