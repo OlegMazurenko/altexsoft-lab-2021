@@ -234,7 +234,7 @@ namespace DeliveryService
                 }
                 else
                 {
-                    Console.WriteLine("Неравильный формат цены");
+                    Console.WriteLine("Неправильный формат цены");
                     Console.WriteLine("Пример: 50 или 10,75");
                 }
             }
