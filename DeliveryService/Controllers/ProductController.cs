@@ -17,13 +17,6 @@ namespace DeliveryService.Controllers
         {
             _storeContext = storeContext;
             _logger = logger;
-            if (storeContext.Products.Count == 0)
-            {
-                AddProduct(new Product("Product1", "description", 10));
-                AddProduct(new Product("Product2", "description", 20));
-                AddProduct(new Product("Product3", "description", 30));
-                storeContext.Save();
-            }
         }
 
         public IList<Product> GetProducts()
