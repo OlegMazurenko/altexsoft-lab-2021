@@ -13,7 +13,8 @@ namespace DeliveryService
             var fileManager = new JsonManager();
             var context = new StoreContext(fileManager);
             var logger = new Logger();
-            var productController = new ProductController(context, logger);
+            var cache = new Cache();
+            var productController = new ProductController(context, logger, cache);
             var userController = new UserController(context, logger);
             var orderController = new OrderController(context, logger);
             if (context.Users.Count == 0)
