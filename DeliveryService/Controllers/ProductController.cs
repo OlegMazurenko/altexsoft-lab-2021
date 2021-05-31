@@ -25,7 +25,6 @@ namespace DeliveryService.Controllers
         public IList<Product> GetProducts()
         {
             return (List<Product>)_cache.GetFromCache((int)Cache.CollectionType.Product, () => _storeContext.Products);
-            //return _storeContext.Products;
         }
 
         public void AddProduct(Product product)
