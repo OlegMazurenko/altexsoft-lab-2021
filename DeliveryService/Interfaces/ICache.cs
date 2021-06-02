@@ -8,6 +8,6 @@ namespace DeliveryService.Interfaces
 {
     public interface ICache
     {
-        object GetFromCache(int key, Func<object> addToCache);
+        object GetFromCache(object key, Func<object> addToCache);
     }
 }

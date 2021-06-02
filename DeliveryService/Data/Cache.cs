@@ -8,7 +8,7 @@ namespace DeliveryService.Data
 {
     public class Cache : ICache
     {
-        private readonly Dictionary<CollectionType, object> _cache = new Dictionary<CollectionType, object>();
+        private readonly Dictionary<object, object> _cache = new Dictionary<object, object>();
         private readonly object _locker = new();
         private DateTime _updateTime = new();
 
@@ -19,7 +19,7 @@ namespace DeliveryService.Data
             Order
         }
 
-        public object GetFromCache(int key, Func<object> addToCache)
+        public object GetFromCache(object key, Func<object> addToCache)
         {
             lock (_locker)
             {
@@ -27,12 +27,12 @@ namespace DeliveryService.Data
                 {
                     _cache.Clear();
                 }
-                if (!_cache.ContainsKey((CollectionType)key))
+                if (!_cache.ContainsKey(key))
                 {
-                    _cache[(CollectionType)key] = addToCache();
+                    _cache[key] = addToCache();
                     _updateTime = DateTime.Now;
                 }
-                return _cache[(CollectionType)key];
+                return _cache[key];
             }
         }
     }
