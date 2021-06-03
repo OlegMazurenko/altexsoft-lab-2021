@@ -12,15 +12,15 @@ namespace DeliveryService
 {
     public class Presenter : IPresenter
     {
-        private readonly IProductController productController;
-        private readonly IUserController userController;
-        private readonly IOrderController orderController;
+        private readonly IProductController _productController;
+        private readonly IUserController _userController;
+        private readonly IOrderController _orderController;
         
         public Presenter(IProductController productController, IUserController userController, IOrderController orderController)
         {
-            this.productController = productController;
-            this.userController = userController;
-            this.orderController = orderController;
+            _productController = productController;
+            _userController = userController;
+            _orderController = orderController;
         }
 
         public void ShowMenu()
@@ -28,7 +28,7 @@ namespace DeliveryService
             var end = false;
             while (true)
             {
-                if (!userController.CurrentUserIsExists())
+                if (!_userController.CurrentUserIsExists())
                 {
                     while (!end)
                     {
@@ -52,7 +52,7 @@ namespace DeliveryService
                                 Console.WriteLine("Нужно ввести число от 1 до 3");
                                 continue;
                         }
-                        if (userController.CurrentUserIsExists())
+                        if (_userController.CurrentUserIsExists())
                         {
                             break;
                         }
@@ -62,7 +62,7 @@ namespace DeliveryService
                 {
                     break;
                 }
-                switch (userController.GetCurrentUser().Access)
+                switch (_userController.GetCurrentUser().Access)
                 {
                     case User.AccessLevel.Buyer:
                         ShowBuyersMenu();
@@ -86,7 +86,7 @@ namespace DeliveryService
                 }
                 Console.WriteLine("Введите пароль:");
                 var password = Console.ReadLine();
-                if (userController.UserIsExists(email, password))
+                if (_userController.UserIsExists(email, password))
                 {
                     break;
                 }
@@ -103,7 +103,7 @@ namespace DeliveryService
             var end = false;
             while (!end)
             {
-                Console.WriteLine($"\r\nРады вас видеть, {userController.GetCurrentUser().Name}.");
+                Console.WriteLine($"\r\nРады вас видеть, {_userController.GetCurrentUser().Name}.");
                 Console.WriteLine("Введите 1, чтобы перейти к списку товаров");
                 Console.WriteLine("Введите 2, чтобы выйти");
                 int.TryParse(Console.ReadLine(), out var number);
@@ -114,7 +114,7 @@ namespace DeliveryService
                         break;
                     case 2:
                         end = true;
-                        userController.SignOutUser();
+                        _userController.SignOutUser();
                         continue;
                     default:
                         Console.WriteLine("Нужно ввести число от 1 до 2");
@@ -128,7 +128,7 @@ namespace DeliveryService
             var end = false;
             while (!end)
             {
-                Console.WriteLine($"\r\nРады вас видеть, {userController.GetCurrentUser().Name}.");
+                Console.WriteLine($"\r\nРады вас видеть, {_userController.GetCurrentUser().Name}.");
                 Console.WriteLine("Введите 1, чтобы добавить новый продукт");
                 Console.WriteLine("Введите 2, чтобы выйти");
                 int.TryParse(Console.ReadLine(), out var number);
@@ -139,7 +139,7 @@ namespace DeliveryService
                         break;
                     case 2:
                         end = true;
-                        userController.SignOutUser();
+                        _userController.SignOutUser();
                         continue;
                     default:
                         Console.WriteLine("Нужно ввести число от 1 до 2");
@@ -154,8 +154,13 @@ namespace DeliveryService
             var productsToOrder = new List<Product>();
             while (!goToOrder)
             {
+                var products = _productController.GetProducts();
+                if (products.Count == 0)
+                {
+                    Console.WriteLine("Нет доступных товаров в данный момент");
+                    return;
+                }
                 Console.WriteLine("Список товаров:");
-                var products = productController.GetProducts();
                 Console.WriteLine("Имя | Описание | Цена");
                 foreach (var product in products)
                 {
@@ -164,8 +169,12 @@ namespace DeliveryService
                 var productsToOrderCount = 0;
                 while (productsToOrderCount < 1)
                 {
-                    Console.WriteLine("Введите имя товара, который хотите заказать");
+                    Console.WriteLine("Введите имя товара, который хотите заказать, или введите 0, чтобы вернуться в меню");
                     var inputProductName = Console.ReadLine();
+                    if (inputProductName == "0")
+                    {
+                        return;
+                    }
                     foreach (var product1 in products)
                     {
                         if (product1.Name == inputProductName)
@@ -180,7 +189,7 @@ namespace DeliveryService
                     }
                 }
                 Console.WriteLine("Введите 1, чтобы перейти к оформлению заказа");
-                Console.WriteLine("Или введите любой другой символ, чтобы добавить в заказ другие товары");
+                Console.WriteLine("Введите 2, или любой другой символ, чтобы добавить в заказ другие товары");
                 int.TryParse(Console.ReadLine(), out var number);
                 if (number == 1)
                 {
@@ -203,7 +212,7 @@ namespace DeliveryService
                 }
             }
             var order = new Order(inputAdress, productsToOrder);
-            orderController.AddOrder(order);
+            _orderController.AddOrder(order);
             Console.WriteLine("Заказ успешно сделан!");
         }
 
@@ -215,9 +224,22 @@ namespace DeliveryService
             Console.WriteLine("Введите описание продукта:");
             var productDescription = Console.ReadLine();
             Console.WriteLine("Введите цену продукта:");
-            var productPrice = Convert.ToDecimal(Console.ReadLine());
+            decimal productPrice;
+            while (true)
+            {
+                if (decimal.TryParse(Console.ReadLine(), out var price))
+                {
+                    productPrice = price;
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Неправильный формат цены");
+                    Console.WriteLine("Пример: 50 или 10,75");
+                }
+            }
             var newProduct = new Product(productName, productDescription, productPrice);
-            productController.AddProduct(newProduct);
+            _productController.AddProduct(newProduct);
             Console.WriteLine("Товар успешно добавлен!");
         }
 
@@ -258,7 +280,7 @@ namespace DeliveryService
                 }
             }
             var user = new User(email, password, name, phoneNumber, User.AccessLevel.Buyer);
-            userController.AddUser(user);
+            _userController.AddUser(user);
             Console.WriteLine("Регистрация выполнена. Теперь вы можете войти в аккаунт.");
         }
     }

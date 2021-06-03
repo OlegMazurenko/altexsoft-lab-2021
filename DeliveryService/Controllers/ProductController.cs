@@ -10,35 +10,36 @@ namespace DeliveryService.Controllers
 {
     public class ProductController : IProductController
     {
-        private readonly IStoreContext storeContext;
-        private readonly ILogger logger;
+        private readonly IStoreContext _storeContext;
+        private readonly ILogger _logger;
 
         public ProductController(IStoreContext storeContext, ILogger logger)
         {
-            this.storeContext = storeContext;
-            this.logger = logger;
+            _storeContext = storeContext;
+            _logger = logger;
         }
 
         public IList<Product> GetProducts()
         {
-            return storeContext.Products;
+            return _storeContext.Products;
         }
 
         public void AddProduct(Product product)
         {
-            product.Id = storeContext.Products.Count > 0 ? storeContext.Products.Max(x => x.Id) + 1 : 1;
-            storeContext.Products.Add(product);
-            if (storeContext.CurrentUser is not null)
+            product.Id = _storeContext.Products.Count > 0 ? _storeContext.Products.Max(x => x.Id) + 1 : 1;
+            _storeContext.Products.Add(product);
+            _storeContext.Save();
+            if (_storeContext.CurrentUser is not null)
             {
-                if (storeContext.CurrentUser.Access == User.AccessLevel.Seller)
+                if (_storeContext.CurrentUser.Access == User.AccessLevel.Seller)
                 {
-                    product.SellerId = storeContext.CurrentUser.Id;
+                    product.SellerId = _storeContext.CurrentUser.Id;
                 }
-                logger.Log($"Пользователь ({storeContext.CurrentUser.Email}) добавил новый товар ({product.Name})");
+                _logger.Log($"Пользователь ({_storeContext.CurrentUser.Email}) добавил новый товар ({product.Name})");
             }
             else
             {
-                logger.Log($"Добавлен новый товар ({product.Name})");
+                _logger.Log($"Добавлен новый товар ({product.Name})");
             }
         }
     }

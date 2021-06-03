@@ -8,31 +8,32 @@ namespace DeliveryService.Controllers
 {
     public class OrderController : IOrderController
     {
-        private readonly IStoreContext storeContext;
-        private readonly ILogger logger;
+        private readonly IStoreContext _storeContext;
+        private readonly ILogger _logger;
 
         public OrderController(IStoreContext storeContext, ILogger logger)
         {
-            this.storeContext = storeContext;
-            this.logger = logger;
+            _storeContext = storeContext;
+            _logger = logger;
         }
 
         public void AddOrder(Order order)
         {
-            order.Id = storeContext.Orders.Count > 0 ? storeContext.Orders.Max(x => x.Id) + 1 : 1;
-            order.UserId = storeContext.CurrentUser.Id;
+            order.Id = _storeContext.Orders.Count > 0 ? _storeContext.Orders.Max(x => x.Id) + 1 : 1;
+            order.UserId = _storeContext.CurrentUser.Id;
             foreach (var product in order.Products)
             {
                 order.TotalPrice += product.Price;
             }
-            storeContext.Orders.Add(order);
-            if (storeContext.CurrentUser is not null)
+            _storeContext.Orders.Add(order);
+            _storeContext.Save();
+            if (_storeContext.CurrentUser is not null)
             {
-                logger.Log($"Пользователь ({storeContext.CurrentUser.Email}) добавил новый заказ (ID: {order.Id})");
+                _logger.Log($"Пользователь ({_storeContext.CurrentUser.Email}) добавил новый заказ (ID: {order.Id})");
             }
             else
             {
-                logger.Log($"Добавлен новый заказ (ID: {order.Id})");
+                _logger.Log($"Добавлен новый заказ (ID: {order.Id})");
             }
         }
     }

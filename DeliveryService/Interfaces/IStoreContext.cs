@@ -10,5 +10,6 @@ namespace DeliveryService.Interfaces
         IList<User> Users { get; set; }
         IList<Order> Orders { get; set; }
         User CurrentUser { get; set; }
+        void Save();
     }
 }
