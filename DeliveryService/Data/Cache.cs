@@ -11,6 +11,7 @@ namespace DeliveryService.Data
         private readonly Dictionary<object, object> _cache = new Dictionary<object, object>();
         private readonly object _locker = new();
         private DateTime _updateTime = new();
+        private const int _invalidationTime = 5;
 
         public enum CollectionType
         {
@@ -23,7 +24,7 @@ namespace DeliveryService.Data
         {
             lock (_locker)
             {
-                if ((DateTime.Now - _updateTime).TotalMinutes > 5)
+                if ((DateTime.Now - _updateTime).TotalMinutes > _invalidationTime)
                 {
                     _cache.Clear();
                 }
