@@ -11,7 +11,7 @@ namespace DeliveryService.Data
         private readonly Dictionary<object, object> _cache = new();
         private readonly object _locker = new();
         private readonly Dictionary<object, DateTime> _updateTime = new();
-        private const int _invalidationTime = 5;
+        private const int InvalidationTime = 5;
 
         public enum CollectionType
         {
@@ -26,7 +26,7 @@ namespace DeliveryService.Data
             {
                 if (_cache.ContainsKey(key) && _updateTime.ContainsKey(key))
                 {
-                    if ((DateTime.Now - _updateTime[key]).TotalMinutes > _invalidationTime)
+                    if ((DateTime.Now - _updateTime[key]).TotalMinutes > InvalidationTime)
                     {
                         _cache.Remove(key);
                         _updateTime.Remove(key);
