@@ -14,6 +14,7 @@ namespace DeliveryService
             var context = new StoreContext(fileManager);
             var logger = new Logger();
             var cache = new Cache();
+            var currencyController = new CurrencyController();
             var productController = new ProductController(context, logger, cache);
             var userController = new UserController(context, logger);
             var orderController = new OrderController(context, logger);
@@ -23,7 +24,7 @@ namespace DeliveryService
                 userController.AddUser(new User("Buyer@ro.ru", "password", "Alex", "0975554433", User.AccessLevel.Buyer));
                 context.Save();
             }
-            var presenter = new Presenter(productController, userController, orderController);
+            var presenter = new Presenter(productController, userController, orderController, currencyController);
             presenter.ShowMenu();
         }
     }

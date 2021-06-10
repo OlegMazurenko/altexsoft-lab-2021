@@ -15,12 +15,14 @@ namespace DeliveryService
         private readonly IProductController _productController;
         private readonly IUserController _userController;
         private readonly IOrderController _orderController;
+        private readonly ICurrencyController _currencyController;
         
-        public Presenter(IProductController productController, IUserController userController, IOrderController orderController)
+        public Presenter(IProductController productController, IUserController userController, IOrderController orderController, ICurrencyController currencyController)
         {
             _productController = productController;
             _userController = userController;
             _orderController = orderController;
+            _currencyController = currencyController;
         }
 
         public void ShowMenu()
@@ -148,7 +150,7 @@ namespace DeliveryService
             }
         }
         
-        public void MakeOrder()
+        public async void MakeOrder()
         {
             bool goToOrder = false;
             var productsToOrder = new List<Product>();
@@ -212,8 +214,14 @@ namespace DeliveryService
                 }
             }
             var order = new Order(inputAdress, productsToOrder);
+            foreach (var product in order.Products)
+            {
+                order.TotalPrice += product.Price;
+            }
             _orderController.AddOrder(order);
+            var convertedPrice = await _currencyController.ConvertToUSD(order.TotalPrice);
             Console.WriteLine("Заказ успешно сделан!");
+            Console.WriteLine($"Сумма заказа: {order.TotalPrice} UAH ({Math.Round(convertedPrice, 2)} USD)");
         }
 
         public void CreateProduct()

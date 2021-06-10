@@ -21,10 +21,6 @@ namespace DeliveryService.Controllers
         {
             order.Id = _storeContext.Orders.Count > 0 ? _storeContext.Orders.Max(x => x.Id) + 1 : 1;
             order.UserId = _storeContext.CurrentUser.Id;
-            foreach (var product in order.Products)
-            {
-                order.TotalPrice += product.Price;
-            }
             _storeContext.Orders.Add(order);
             _storeContext.Save();
             if (_storeContext.CurrentUser is not null)
