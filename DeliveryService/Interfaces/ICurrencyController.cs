@@ -8,6 +8,6 @@ namespace DeliveryService.Interfaces
 {
     public interface ICurrencyController
     {
-        Task<decimal> ConvertToUSD(decimal price);
+        Task<decimal> ConvertToUsdAsync(decimal price);
     }
 }

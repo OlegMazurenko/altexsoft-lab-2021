@@ -10,7 +10,7 @@ namespace DeliveryService.Controllers
 {
     public class CurrencyController : ICurrencyController
     {
-        public async Task<decimal> ConvertToUSD(decimal price)
+        public async Task<decimal> ConvertToUsdAsync(decimal price)
         {
             var httpClient = new HttpClient();
             var response = await httpClient.GetStringAsync("https://bank.gov.ua/NBUStatService/v1/statdirectory/dollar_info?json");

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using DeliveryService.Controllers;
 using DeliveryService.Data;
 using DeliveryService.Models;
@@ -8,7 +9,7 @@ namespace DeliveryService
 {
     class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             var fileManager = new JsonManager();
             var context = new StoreContext(fileManager);
@@ -25,7 +26,7 @@ namespace DeliveryService
                 context.Save();
             }
             var presenter = new Presenter(productController, userController, orderController, currencyController);
-            presenter.ShowMenu();
+            await presenter.ShowMenuAsync();
         }
     }
 }

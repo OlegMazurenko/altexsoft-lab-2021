@@ -25,7 +25,7 @@ namespace DeliveryService
             _currencyController = currencyController;
         }
 
-        public void ShowMenu()
+        public async Task ShowMenuAsync()
         {
             var end = false;
             while (true)
@@ -67,7 +67,7 @@ namespace DeliveryService
                 switch (_userController.GetCurrentUser().Access)
                 {
                     case User.AccessLevel.Buyer:
-                        ShowBuyersMenu();
+                        await ShowBuyersMenuAsync();
                         break;
                     case User.AccessLevel.Seller:
                         ShowSellersMenu();
@@ -100,7 +100,7 @@ namespace DeliveryService
             }
         }
 
-        public void ShowBuyersMenu()
+        public async Task ShowBuyersMenuAsync()
         {
             var end = false;
             while (!end)
@@ -112,7 +112,7 @@ namespace DeliveryService
                 switch (number)
                 {
                     case 1:
-                        MakeOrder();
+                        await MakeOrderAsync();
                         break;
                     case 2:
                         end = true;
@@ -150,7 +150,7 @@ namespace DeliveryService
             }
         }
         
-        public async void MakeOrder()
+        public async Task MakeOrderAsync()
         {
             bool goToOrder = false;
             var productsToOrder = new List<Product>();
@@ -219,7 +219,7 @@ namespace DeliveryService
                 order.TotalPrice += product.Price;
             }
             _orderController.AddOrder(order);
-            var convertedPrice = await _currencyController.ConvertToUSD(order.TotalPrice);
+            var convertedPrice = await _currencyController.ConvertToUsdAsync(order.TotalPrice);
             Console.WriteLine("Заказ успешно сделан!");
             Console.WriteLine($"Сумма заказа: {order.TotalPrice} UAH ({Math.Round(convertedPrice, 2)} USD)");
         }
