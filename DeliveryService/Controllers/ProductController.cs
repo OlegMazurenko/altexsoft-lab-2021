@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DeliveryService.Interfaces;
 using DeliveryService.Models;
+using DeliveryService.Data;
 
 namespace DeliveryService.Controllers
 {
@@ -12,16 +13,18 @@ namespace DeliveryService.Controllers
     {
         private readonly IStoreContext _storeContext;
         private readonly ILogger _logger;
+        private readonly ICache _cache;
 
-        public ProductController(IStoreContext storeContext, ILogger logger)
+        public ProductController(IStoreContext storeContext, ILogger logger, ICache cache)
         {
             _storeContext = storeContext;
             _logger = logger;
+            _cache = cache;
         }
 
         public IList<Product> GetProducts()
         {
-            return _storeContext.Products;
+            return (List<Product>)_cache.GetFromCache(Cache.CollectionType.Product, () => _storeContext.Products);
         }
 
         public void AddProduct(Product product)
