@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net.Http;
 using DeliveryService.Interfaces;
+using System.Globalization;
 
 namespace DeliveryService.Controllers
 {
@@ -17,7 +18,7 @@ namespace DeliveryService.Controllers
             var rate = response
                 .Split(new string[] { "\"rate\":" }, StringSplitOptions.RemoveEmptyEntries)[1]
                 .Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries)[0];
-            decimal.TryParse(rate.Replace('.', ','), out var parsedRate);
+            decimal.TryParse(rate, NumberStyles.Any, new CultureInfo("en-US"), out var parsedRate);
             return price / parsedRate;
         }
     }
