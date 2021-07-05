@@ -1,7 +1,7 @@
 CREATE PROC GenerateId (@table varchar(50), @id varchar(50) OUTPUT)
 AS
 BEGIN
-SET @id = Substring(@table, 0, 3) + '-' + Convert(varchar(50), NewId())
+SET @id = Substring(@table, 1, 4) + '-' + Convert(varchar(50), NewId())
 END
 GO
 
