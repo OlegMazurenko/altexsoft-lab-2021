@@ -11,7 +11,7 @@ namespace DeliveryService.Controllers
 {
     public class CurrencyController : ICurrencyController
     {
-        public async Task<decimal> ConvertToUsdAsync(decimal price)
+        public async Task<decimal> GetUsdRateAsync()
         {
             var httpClient = new HttpClient();
             var response = await httpClient.GetStringAsync("https://bank.gov.ua/NBUStatService/v1/statdirectory/dollar_info?json");
@@ -19,7 +19,7 @@ namespace DeliveryService.Controllers
                 .Split(new string[] { "\"rate\":" }, StringSplitOptions.RemoveEmptyEntries)[1]
                 .Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries)[0];
             decimal.TryParse(rate, NumberStyles.Any, new CultureInfo("en-US"), out var parsedRate);
-            return price / parsedRate;
+            return parsedRate;
         }
     }
 }

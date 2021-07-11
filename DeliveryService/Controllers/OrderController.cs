@@ -39,7 +39,7 @@ namespace DeliveryService.Controllers
 
         public async Task<decimal> ConvertToUsdAsync(decimal price)
         {
-            return await _currencyController.ConvertToUsdAsync(price);
+            return price / await _currencyController.GetUsdRateAsync();
         }
     }
 }
