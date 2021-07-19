@@ -18,12 +18,5 @@ namespace DeliveryService.Models
             Products = products;
             Address = address;
         }
-
-        public enum OrderStatus
-        {
-            Completed,
-            InProgress,
-            Canceled
-        }
     }
 }
