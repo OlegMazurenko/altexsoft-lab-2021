@@ -20,5 +20,17 @@ namespace DeliveryService.Models
             PhoneNumber = phoneNumber;
             Access = access;
         }
+
+        public User(int id, string email, string password, string name, string phoneNumber, AccessLevel access)
+        {
+            Id = id;
+            Email = email;
+            Password = password;
+            Name = name;
+            PhoneNumber = phoneNumber;
+            Access = access;
+        }
+
+        public User() { }
     }
 }

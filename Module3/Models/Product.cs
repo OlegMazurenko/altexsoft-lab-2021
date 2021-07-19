@@ -18,5 +18,17 @@ namespace DeliveryService.Models
             Description = description;
             Price = price;
         }
+
+        public Product(int id, string name, string description, decimal price, int sellerId, int categoryId)
+        {
+            Id = id;
+            Name = name;
+            Description = description;
+            Price = price;
+            SellerId = sellerId;
+            CategoryId = categoryId;
+        }
+
+        public Product() { }
     }
 }

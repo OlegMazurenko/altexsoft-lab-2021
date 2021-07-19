@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using DeliveryService.Data;
 
 namespace DeliveryService
 {
@@ -6,7 +9,7 @@ namespace DeliveryService
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var data = new StoreContext();
         }
     }
 }
