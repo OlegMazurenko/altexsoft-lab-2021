@@ -24,23 +24,35 @@ namespace DeliveryService.Data
             {
                 new Product
                 {
-                    Id = 1, Name = "Product1", Description = "desc", SellerId = 1, CategoryId = 3
+                    Id = 1, Name = "Pizza", Description = "desc", SellerId = 1, CategoryId = 3
                 },
                 new Product
                 {
-                    Id = 2, Name = "Product2", Description = "desc", SellerId = 1, CategoryId = 1
+                    Id = 2, Name = "Soup", Description = "desc", SellerId = 2, CategoryId = 1
                 },
                 new Product
                 {
-                    Id = 3, Name = "Product3", Description = "desc", SellerId = 2, CategoryId = 1
+                    Id = 3, Name = "Steak", Description = "desc", SellerId = 1, CategoryId = 1
                 },
                 new Product
                 {
-                    Id = 4, Name = "Product4", Description = "desc", SellerId = 2, CategoryId = 2
+                    Id = 4, Name = "Toast", Description = "desc", SellerId = 2, CategoryId = 2
                 },
                 new Product
                 {
-                    Id = 5, Name = "Product5", Description = "desc", SellerId = 3, CategoryId = 2
+                    Id = 5, Name = "Salad", Description = "desc", SellerId = 3, CategoryId = 2
+                },
+                new Product
+                {
+                    Id = 6, Name = "Pizza", Description = "desc", SellerId = 3, CategoryId = 3
+                },
+                new Product
+                {
+                    Id = 7, Name = "Steak", Description = "desc", SellerId = 3, CategoryId = 1
+                },
+                new Product
+                {
+                    Id = 8, Name = "Sushi", Description = "desc", SellerId = 1, CategoryId = 2
                 }
             };
         }
