@@ -12,5 +12,7 @@ namespace DeliveryService.Models
         public string Name { get; set; }
         public AccessLevel Access { get; set; }
         public IList<Order> Orders { get; set; }
+
+        public User() { }
     }
 }
