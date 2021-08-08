@@ -24,7 +24,7 @@ namespace DeliveryService
 
         static void Task1(StoreContext data)
         {
-            var products = data.Products.OrderBy(p => p.Name).ToList();
+            var products = data.Products.OrderBy(p => p.Name);
             foreach(var product in products)
             {
                 Console.WriteLine($"{product.Name}");
@@ -33,26 +33,24 @@ namespace DeliveryService
 
         static void Task2(StoreContext data)
         {
-            var products = data.Products.Join(data.Users,
-                p => p.SellerId,
-                u => u.Id,
-                (p, u) => new { SellerName = u.Name, ProductName = p.Name });
+            var products = data.Products;
             Console.WriteLine("Seller Name | Product Name");
             foreach(var product in products)
             {
-                Console.WriteLine($"{product.SellerName}     |     {product.ProductName}");
+                Console.WriteLine($"{product.Seller.Name}     |     {product.Name}");
             }
         }
 
         static void Task3(StoreContext data)
         {
-            var categories = data.Categories;
-            var products = data.Products;
+            var products = data.Categories.GroupJoin(data.Products,
+                c => c.Id,
+                p => p.CategoryId,
+                (c, p) => new { CategoryName = c.Name, ProductCount = p.Count() });
             Console.WriteLine("Category Name | Products Count");
-            foreach (var category in categories)
+            foreach (var product in products)
             {
-                var productsInCategory = products.Where(x => x.CategoryId == category.Id).ToList();
-                Console.WriteLine($"{category.Name}     |     {productsInCategory.Count}");
+                Console.WriteLine($"{product.CategoryName}     |     {product.ProductCount}");
             }
         }
 
@@ -60,7 +58,7 @@ namespace DeliveryService
         {
             var products = data.Users.GroupJoin(data.Products,
                 u => u.Id,
-                p => p.SellerId,
+                p => p.Seller.Id,
                 (u, p) => new { SellerName = u.Name, ProductCount = p.Count() })
                 .OrderByDescending(x => x.ProductCount);
             Console.WriteLine("Seller Name | Product Count");
@@ -73,8 +71,8 @@ namespace DeliveryService
         static void Task5(StoreContext data)
         {
             Console.WriteLine("----Task5.1----");
-            var productsFromSeller1 = data.Products.Where(x => x.SellerId == 1).Select(x => new { x.Name }).ToList();
-            var productsFromSeller3 = data.Products.Where(x => x.SellerId == 3).Select(x => new { x.Name }).ToList();
+            var productsFromSeller1 = data.Products.Where(x => x.Seller.Id == 1).Select(x => new { x.Name }).ToList();
+            var productsFromSeller3 = data.Products.Where(x => x.Seller.Id == 3).Select(x => new { x.Name }).ToList();
 
             var intersect = productsFromSeller1.Intersect(productsFromSeller3);
             foreach(var product in intersect)

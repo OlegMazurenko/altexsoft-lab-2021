@@ -1,6 +1,7 @@
 ﻿using DeliveryService.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace DeliveryService.Data
 {
@@ -13,9 +14,9 @@ namespace DeliveryService.Data
 
         public StoreContext()
         {
-            FillProducts();
-            FillUsers();
             FillCategories();
+            FillUsers();
+            FillProducts();
         }
 
         public void FillProducts()
@@ -24,35 +25,35 @@ namespace DeliveryService.Data
             {
                 new Product
                 {
-                    Id = 1, Name = "Pizza", Description = "desc", SellerId = 1, CategoryId = 3
+                    Id = 1, Name = "Pizza", Description = "desc", Seller = Users.First(x => x.Id == 1), CategoryId = 3
                 },
                 new Product
                 {
-                    Id = 2, Name = "Soup", Description = "desc", SellerId = 2, CategoryId = 1
+                    Id = 2, Name = "Soup", Description = "desc", Seller = Users.First(x => x.Id == 2), CategoryId = 1
                 },
                 new Product
                 {
-                    Id = 3, Name = "Steak", Description = "desc", SellerId = 1, CategoryId = 1
+                    Id = 3, Name = "Steak", Description = "desc", Seller = Users.First(x => x.Id == 1), CategoryId = 1
                 },
                 new Product
                 {
-                    Id = 4, Name = "Toast", Description = "desc", SellerId = 2, CategoryId = 2
+                    Id = 4, Name = "Toast", Description = "desc", Seller = Users.First(x => x.Id == 2), CategoryId = 2
                 },
                 new Product
                 {
-                    Id = 5, Name = "Salad", Description = "desc", SellerId = 3, CategoryId = 2
+                    Id = 5, Name = "Salad", Description = "desc", Seller = Users.First(x => x.Id == 3), CategoryId = 2
                 },
                 new Product
                 {
-                    Id = 6, Name = "Pizza", Description = "desc", SellerId = 3, CategoryId = 3
+                    Id = 6, Name = "Pizza", Description = "desc", Seller = Users.First(x => x.Id == 3), CategoryId = 3
                 },
                 new Product
                 {
-                    Id = 7, Name = "Steak", Description = "desc", SellerId = 3, CategoryId = 1
+                    Id = 7, Name = "Steak", Description = "desc", Seller = Users.First(x => x.Id == 3), CategoryId = 1
                 },
                 new Product
                 {
-                    Id = 8, Name = "Sushi", Description = "desc", SellerId = 1, CategoryId = 2
+                    Id = 8, Name = "Sushi", Description = "desc", Seller = Users.First(x => x.Id == 1), CategoryId = 2
                 }
             };
         }

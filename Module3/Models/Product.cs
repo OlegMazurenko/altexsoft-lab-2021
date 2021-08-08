@@ -9,25 +9,8 @@ namespace DeliveryService.Models
         public string Name { get; set; }
         public string Description { get; set; }
         public decimal Price { get; set; }
-        public int SellerId { get; set; }
+        public User Seller { get; set; }
         public int CategoryId { get; set; }
-
-        public Product(string name, string description, decimal price)
-        {
-            Name = name;
-            Description = description;
-            Price = price;
-        }
-
-        public Product(int id, string name, string description, decimal price, int sellerId, int categoryId)
-        {
-            Id = id;
-            Name = name;
-            Description = description;
-            Price = price;
-            SellerId = sellerId;
-            CategoryId = categoryId;
-        }
 
         public Product() { }
     }
