@@ -12,11 +12,5 @@ namespace DeliveryService.Models
         public decimal DeliveryCost { get; set; }
         public decimal TotalPrice { get; set; }
         public OrderStatus Status { get; set; }
-
-        public Order(string address, IList<Product> products)
-        {
-            Products = products;
-            Address = address;
-        }
     }
 }
