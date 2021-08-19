@@ -8,6 +8,11 @@ namespace DeliveryServiceEF.Domain.Interfaces
 {
     public interface IUnitOfWork
     {
+        ICategoryRepository Categories { get; }
+        IOrderRepository Orders { get; }
+        IProductRepository Products { get; }
+        IUserRepository Users { get; }
+
         void Save();
     }
 }
