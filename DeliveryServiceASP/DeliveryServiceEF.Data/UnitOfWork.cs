@@ -4,24 +4,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DeliveryServiceEF.Domain.Interfaces;
+using DeliveryServiceEF.Domain.Models;
 
 namespace DeliveryServiceEF.Data
 {
     public class UnitOfWork : IUnitOfWork
     {
         private readonly DataContext _context;
-        public ICategoryRepository Categories { get; }
-        public IOrderRepository Orders { get; }
-        public IProductRepository Products { get; }
-        public IUserRepository Users { get; }
+        private IRepository<Category> _categories;
+        private IRepository<Order> _orders;
+        private IRepository<Product> _products;
+        private IRepository<User> _users;
+
+        public IRepository<Category> Categories { get => _categories ??= new Repository<Category>(_context); }
+        public IRepository<Order> Orders { get => _orders ??= new Repository<Order>(_context); }
+        public IRepository<Product> Products { get => _products ??= new Repository<Product>(_context); }
+        public IRepository<User> Users { get => _users ??= new Repository<User>(_context); }
 
         public UnitOfWork(DataContext context)
         {
             _context = context;
-            Categories = new CategoryRepository(_context);
-            Orders = new OrderRepository(_context);
-            Products = new ProductRepository(_context);
-            Users = new UserRepository(_context);
         }
 
         public void Save()

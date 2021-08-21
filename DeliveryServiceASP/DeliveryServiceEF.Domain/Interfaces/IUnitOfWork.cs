@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DeliveryServiceEF.Domain.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,10 +9,10 @@ namespace DeliveryServiceEF.Domain.Interfaces
 {
     public interface IUnitOfWork
     {
-        ICategoryRepository Categories { get; }
-        IOrderRepository Orders { get; }
-        IProductRepository Products { get; }
-        IUserRepository Users { get; }
+        IRepository<Category> Categories { get; }
+        IRepository<Order> Orders { get; }
+        IRepository<Product> Products { get; }
+        IRepository<User> Users { get; }
 
         void Save();
     }

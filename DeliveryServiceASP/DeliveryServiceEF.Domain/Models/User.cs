@@ -10,8 +10,9 @@ namespace DeliveryServiceEF.Domain.Models
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
-        public string Name { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
         public AccessLevel Access { get; set; }
-        public IList<Order> Orders { get; set; }
+        public List<Order> Orders { get; set; }
     }
 }
