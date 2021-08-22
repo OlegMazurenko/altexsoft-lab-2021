@@ -15,9 +15,9 @@ namespace DeliveryServiceEF.Data
         public DbSet<Product> Products { get; set; }
         public DbSet<User> Users { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder builder)
+        public DataContext(DbContextOptions options) : base(options)
         {
-            builder.UseSqlServer(@"Data Source=DESKTOP-IE45JEM\SQLEXPRESS; Integrated Security=True; Initial Catalog = DeliveryServiceEF");
+            Database.Migrate();
         }
 
         protected override void OnModelCreating(ModelBuilder builder)

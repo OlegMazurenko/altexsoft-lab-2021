@@ -1,5 +1,3 @@
-using DeliveryServiceEF.Data;
-using DeliveryServiceEF.Domain.Controllers;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -16,8 +14,6 @@ namespace DeliveryServiceEF.Web
     {
         public static void Main(string[] args)
         {
-            var context = new DataContext();
-            context.Database.Migrate();
             CreateHostBuilder(args).Build().Run();
         }
 

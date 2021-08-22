@@ -14,13 +14,19 @@ namespace DeliveryServiceEF.Web.Controllers
     [Route("[controller]")]
     public class ExampleController : ControllerBase
     {
+        private readonly CategoryController _categoryController;
+
+        public ExampleController(CategoryController categoryController)
+        {
+            _categoryController = categoryController;
+        }
+
         //  GET /Example
         [HttpGet]
         public IEnumerable<Category> Get()
         {
-            var categoryController = new CategoryController(new UnitOfWork(new DataContext()));
-            categoryController.AddCategory(new Category() { Name = "Category123" });
-            return categoryController.GetCategories();
+            _categoryController.AddCategory(new Category() { Name = "Category123" });
+            return _categoryController.GetCategories();
         }
     }
 }
