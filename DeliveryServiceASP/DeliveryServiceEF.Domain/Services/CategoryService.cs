@@ -6,13 +6,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DeliveryServiceEF.Domain.Controllers
+namespace DeliveryServiceEF.Domain.Services
 {
-    public class CategoryController
+    public class CategoryService : ICategoryService
     {
         private IUnitOfWork UnitOfWork { get; }
 
-        public CategoryController(IUnitOfWork unitOfWork)
+        public CategoryService(IUnitOfWork unitOfWork)
         {
             UnitOfWork = unitOfWork;
         }

@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using DeliveryServiceEF.Data;
-using DeliveryServiceEF.Domain.Controllers;
+using DeliveryServiceEF.Domain.Services;
 using DeliveryServiceEF.Domain.Interfaces;
 using DeliveryServiceEF.Domain.Models;
 
@@ -18,10 +18,10 @@ namespace DeliveryServiceEF.Web
             services.AddScoped<IRepository<Order>, Repository<Order>>();
             services.AddScoped<IRepository<Product>, Repository<Product>>();
             services.AddScoped<IRepository<User>, Repository<User>>();
-            services.AddScoped<CategoryController>();
-            services.AddScoped<OrderController>();
-            services.AddScoped<ProductController>();
-            services.AddScoped<UserController>();
+            services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<OrderService>();
+            services.AddScoped<ProductService>();
+            services.AddScoped<UserService>();
             return services;
         }
     }

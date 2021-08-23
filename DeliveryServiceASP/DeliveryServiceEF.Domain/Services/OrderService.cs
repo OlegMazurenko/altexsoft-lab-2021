@@ -5,13 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DeliveryServiceEF.Domain.Controllers
+namespace DeliveryServiceEF.Domain.Services
 {
-    public class UserController
+    public class OrderService
     {
         private IUnitOfWork UnitOfWork { get; }
 
-        public UserController(IUnitOfWork unitOfWork)
+        public OrderService(IUnitOfWork unitOfWork)
         {
             UnitOfWork = unitOfWork;
         }
