@@ -11,19 +11,19 @@ namespace DeliveryServiceEF.Data
     public class UnitOfWork : IUnitOfWork
     {
         private readonly DataContext _context;
-        private IRepository<Category> _categories;
-        private IRepository<Order> _orders;
-        private IRepository<Product> _products;
-        private IRepository<User> _users;
+        public IRepository<Category> Categories { get; }
+        public IRepository<Order> Orders { get; }
+        public IRepository<Product> Products { get; }
+        public IRepository<User> Users { get; }
 
-        public IRepository<Category> Categories { get => _categories ??= new Repository<Category>(_context); }
-        public IRepository<Order> Orders { get => _orders ??= new Repository<Order>(_context); }
-        public IRepository<Product> Products { get => _products ??= new Repository<Product>(_context); }
-        public IRepository<User> Users { get => _users ??= new Repository<User>(_context); }
-
-        public UnitOfWork(DataContext context)
+        public UnitOfWork(DataContext context, IRepository<Category> categories, IRepository<Order> orders, 
+            IRepository<Product> products, IRepository<User> users)
         {
             _context = context;
+            Categories = categories;
+            Orders = orders;
+            Products = products;
+            Users = users;
         }
 
         public void Save()
