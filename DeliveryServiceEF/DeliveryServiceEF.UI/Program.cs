@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DeliveryServiceEF.Data;
+using System;
 
 namespace DeliveryServiceEF.UI
 {
@@ -6,7 +7,9 @@ namespace DeliveryServiceEF.UI
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var context = new DataContext();
+            context.Database.EnsureCreated();
+            var unitOfWork = new UnitOfWork(context);
         }
     }
 }
