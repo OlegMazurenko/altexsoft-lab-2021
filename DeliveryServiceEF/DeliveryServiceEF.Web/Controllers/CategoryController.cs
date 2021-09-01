@@ -29,22 +29,26 @@ namespace DeliveryServiceEF.Web.Controllers
             return _categoryService.GetCategories();
         }
 
-        //  GET /Category/{id?}
+        //  GET /Category
+        //  GET /Category/{id}
         //  POST /Category
         //  PUT /Category/{id}
         //  DELETE /Category/{id}
 
-        //  GET /Order/{id?}
+        //  GET /Order
+        //  GET /Order/{id}
         //  POST /Order
         //  PUT /Order/{id}
         //  DELETE /Order/{id}
 
-        //  GET /Product/{id?}
+        //  GET /Product
+        //  GET /Product/{id}
         //  POST /Product
         //  PUT /Product/{id}
         //  DELETE /Product/{id}
 
-        //  GET /User/{id?}
+        //  GET /User
+        //  GET /User/{id}
         //  POST /User
         //  PUT /User/{id}
         //  DELETE /User/{id}
