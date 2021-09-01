@@ -19,9 +19,9 @@ namespace DeliveryServiceEF.Web
             services.AddScoped<IRepository<Product>, Repository<Product>>();
             services.AddScoped<IRepository<User>, Repository<User>>();
             services.AddScoped<ICategoryService, CategoryService>();
-            services.AddScoped<OrderService>();
-            services.AddScoped<ProductService>();
-            services.AddScoped<UserService>();
+            services.AddScoped<IOrderService, OrderService>();
+            services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<IUserService, UserService>();
             return services;
         }
     }

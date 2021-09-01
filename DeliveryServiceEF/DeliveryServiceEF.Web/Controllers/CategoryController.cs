@@ -23,30 +23,27 @@ namespace DeliveryServiceEF.Web.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Category> Get()
+        public IEnumerable<Category> GetAll()
         {
-            _categoryService.AddCategory(new Category() { Name = "Category123" });
             return _categoryService.GetCategories();
         }
 
-        //  GET /Category/{id?}
-        //  POST /Category
-        //  PUT /Category/{id}
-        //  DELETE /Category/{id}
+        [HttpGet("{id}")]
+        public Category GetById(int id)
+        {
+            return _categoryService.GetCategory(id);
+        }
 
-        //  GET /Order/{id?}
-        //  POST /Order
-        //  PUT /Order/{id}
-        //  DELETE /Order/{id}
+        [HttpPost]
+        public void Add(Category category)
+        {
+            _categoryService.AddCategory(category);
+        }
 
-        //  GET /Product/{id?}
-        //  POST /Product
-        //  PUT /Product/{id}
-        //  DELETE /Product/{id}
-
-        //  GET /User/{id?}
-        //  POST /User
-        //  PUT /User/{id}
-        //  DELETE /User/{id}
+        [HttpDelete("{id}")]
+        public void Delete(int id)
+        {
+            _categoryService.DeleteCategory(id);
+        }
     }
 }
