@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31005.135
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeliveryServiceEF.UI", "DeliveryServiceEF.UI\DeliveryServiceEF.UI.csproj", "{6699CCF9-D0FA-482F-A63E-67CE89265602}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeliveryServiceEF.Data", "DeliveryServiceEF.Data\DeliveryServiceEF.Data.csproj", "{2A4DDA73-0BDD-45C5-BE00-1E85FFEFA70D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeliveryServiceEF.Data", "DeliveryServiceEF.Data\DeliveryServiceEF.Data.csproj", "{2A4DDA73-0BDD-45C5-BE00-1E85FFEFA70D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeliveryServiceEF.Domain", "DeliveryServiceEF.Domain\DeliveryServiceEF.Domain.csproj", "{D1C6D40C-E8F4-4A8E-9B56-2E201BDC395C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeliveryServiceEF.Domain", "DeliveryServiceEF.Domain\DeliveryServiceEF.Domain.csproj", "{D1C6D40C-E8F4-4A8E-9B56-2E201BDC395C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeliveryServiceEF.Web", "DeliveryServiceEF.Web\DeliveryServiceEF.Web.csproj", "{BE2B2FDC-B1AF-4D8D-8FC6-DA540097AC97}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,10 +15,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{6699CCF9-D0FA-482F-A63E-67CE89265602}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6699CCF9-D0FA-482F-A63E-67CE89265602}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6699CCF9-D0FA-482F-A63E-67CE89265602}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6699CCF9-D0FA-482F-A63E-67CE89265602}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2A4DDA73-0BDD-45C5-BE00-1E85FFEFA70D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2A4DDA73-0BDD-45C5-BE00-1E85FFEFA70D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A4DDA73-0BDD-45C5-BE00-1E85FFEFA70D}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -27,6 +23,10 @@ Global
 		{D1C6D40C-E8F4-4A8E-9B56-2E201BDC395C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D1C6D40C-E8F4-4A8E-9B56-2E201BDC395C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D1C6D40C-E8F4-4A8E-9B56-2E201BDC395C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE2B2FDC-B1AF-4D8D-8FC6-DA540097AC97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE2B2FDC-B1AF-4D8D-8FC6-DA540097AC97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE2B2FDC-B1AF-4D8D-8FC6-DA540097AC97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE2B2FDC-B1AF-4D8D-8FC6-DA540097AC97}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
