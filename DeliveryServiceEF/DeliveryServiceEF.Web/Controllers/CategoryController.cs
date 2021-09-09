@@ -35,15 +35,17 @@ namespace DeliveryServiceEF.Web.Controllers
         }
 
         [HttpPost]
-        public void Add(Category category)
+        public ActionResult Add(Category category)
         {
             _categoryService.AddCategory(category);
+            return Ok();
         }
 
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public ActionResult Delete(int id)
         {
             _categoryService.DeleteCategory(id);
+            return Ok();
         }
     }
 }
