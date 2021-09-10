@@ -32,15 +32,17 @@ namespace DeliveryServiceEF.Web.Controllers
         }
 
         [HttpPost]
-        public void Add(Product product)
+        public ActionResult Add(Product product)
         {
             _productService.AddProduct(product);
+            return Ok();
         }
 
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public ActionResult Delete(int id)
         {
             _productService.DeleteProduct(id);
+            return Ok();
         }
     }
 }

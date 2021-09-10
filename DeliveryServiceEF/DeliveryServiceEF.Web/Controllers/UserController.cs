@@ -32,15 +32,17 @@ namespace DeliveryServiceEF.Web.Controllers
         }
 
         [HttpPost]
-        public void Add(User user)
+        public ActionResult Add(User user)
         {
             _userService.AddUser(user);
+            return Ok();
         }
 
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public ActionResult Delete(int id)
         {
             _userService.DeleteUser(id);
+            return Ok();
         }
     }
 }
