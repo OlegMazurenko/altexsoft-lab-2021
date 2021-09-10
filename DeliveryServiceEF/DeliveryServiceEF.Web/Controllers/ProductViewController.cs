@@ -43,7 +43,7 @@ namespace DeliveryServiceEF.Web.Controllers
             return View();
         }
 
-        [HttpDelete("delete")]
+        [HttpPost("delete")]
         public IActionResult Delete(int id)
         {
             _productService.DeleteProduct(id);
