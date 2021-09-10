@@ -27,6 +27,7 @@ namespace DeliveryServiceEF.Web
         {
             services.AddServices(Configuration.GetConnectionString("DefaultConnection"));
             services.AddControllers();
+            services.AddControllersWithViews();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "DeliveryServiceEF.Web", Version = "v1" });

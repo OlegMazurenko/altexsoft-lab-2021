@@ -12,7 +12,7 @@ using DeliveryServiceEF.Domain.Interfaces;
 namespace DeliveryServiceEF.Web.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class CategoryController : ControllerBase
     {
         private readonly ICategoryService _categoryService;

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace DeliveryServiceEF.Web.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class UserController : ControllerBase
     {
         private readonly IUserService _userService;
