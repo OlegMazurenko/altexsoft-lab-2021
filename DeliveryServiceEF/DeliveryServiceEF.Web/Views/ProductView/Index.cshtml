@@ -2,5 +2,8 @@
 
 @foreach (var product in Model)
 {
+    <span>@product.Id </span>
     <span>@product.Name </span>
+    @Html.ActionLink("Details", "Details", "ProductView", new { product.Id })
+    <br />
 }

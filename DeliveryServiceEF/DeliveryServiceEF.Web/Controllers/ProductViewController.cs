@@ -24,6 +24,12 @@ namespace DeliveryServiceEF.Web.Controllers
             return View("Index", _productService.GetProducts());
         }
 
+        [HttpGet("details")]
+        public IActionResult Details(int id)
+        {
+            return View("Details", _productService.GetProduct(id));
+        }
+
         [HttpGet("create")]
         public IActionResult Create()
         {
