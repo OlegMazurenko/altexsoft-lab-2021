@@ -1,5 +1,6 @@
 ﻿using DeliveryServiceEF.Domain.Interfaces;
 using DeliveryServiceEF.Domain.Models;
+using DeliveryServiceEF.Web.Filters;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 namespace DeliveryServiceEF.Web.Controllers
 {
     [Route("mvc/product")]
+    [ServiceFilter(typeof(ProductExeptionFilter))]
     public class ProductViewController : Controller
     {
         private readonly IProductService _productService;
@@ -19,6 +21,7 @@ namespace DeliveryServiceEF.Web.Controllers
         }
 
         [HttpGet]
+        [ServiceFilter(typeof(ProductActionFilter))]
         public IActionResult Index()
         {
             return View("Index", _productService.GetProducts());

@@ -5,6 +5,8 @@ using DeliveryServiceEF.Data;
 using DeliveryServiceEF.Domain.Services;
 using DeliveryServiceEF.Domain.Interfaces;
 using DeliveryServiceEF.Domain.Models;
+using DeliveryServiceEF.Web.Filters;
+using Microsoft.Extensions.Logging;
 
 namespace DeliveryServiceEF.Web
 {
@@ -22,6 +24,9 @@ namespace DeliveryServiceEF.Web
             services.AddScoped<IOrderService, OrderService>();
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<ProductActionFilter>();
+            services.AddScoped<ProductExeptionFilter>();
+            services.AddScoped<ILogger, Logger<ProductExeptionFilter>>();
             return services;
         }
     }
