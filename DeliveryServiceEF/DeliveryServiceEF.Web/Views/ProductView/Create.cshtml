@@ -1,17 +1,27 @@
-﻿<form method="post">
-    <p>
-        <label>Name</label><br />
-        <input type="text" name="Name" />
-    </p>
-    <p>
-        <label>Price</label><br />
-        <input type="number" name="Price" />
-    </p>
-    <p>
-        <label>CategoryId</label><br />
-        <input type="text" name="CategoryId" />
-    </p>
-    <p>
-        <input type="submit" value="Отправить" />
-    </p>
+﻿@model DeliveryServiceEF.Domain.Models.Product
+
+<form method="post" asp-action="Create">
+    <div>
+        <div class="validation" asp-validation-summary="ModelOnly"></div>
+        <p>
+            <label asp-for="Name">Name</label><br />
+            <input type="text" name="Name" />
+            <span asp-validation-for="Name"></span>
+        </p>
+        <p>
+            <label asp-for="Name">Price</label><br />
+            <input type="number" name="Price" />
+            <span asp-validation-for="Price"></span>
+        </p>
+        <p>
+            <label asp-for="Name">CategoryId</label><br />
+            <input type="number" name="CategoryId" />
+            <span asp-validation-for="CategoryId"></span>
+        </p>
+        <p>
+            <input type="submit" value="Отправить" />
+        </p>
+    </div>
 </form>
+
+@Html.Partial("_ValidationScriptsPartial")
