@@ -42,7 +42,10 @@ namespace DeliveryServiceEF.Web.Controllers
         [HttpPost("create")]
         public IActionResult Create(Product product)
         {
-            _productService.AddProduct(product);
+            if (ModelState.IsValid)
+            {
+                _productService.AddProduct(product);
+            }
             return View();
         }
 
