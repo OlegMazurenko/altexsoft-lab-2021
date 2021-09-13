@@ -21,6 +21,7 @@ namespace DeliveryServiceEF.Web.Controllers
         }
 
         [HttpGet]
+        [ResponseCache(Duration = 120)]
         [ServiceFilter(typeof(ProductActionFilter))]
         public IActionResult Index()
         {
