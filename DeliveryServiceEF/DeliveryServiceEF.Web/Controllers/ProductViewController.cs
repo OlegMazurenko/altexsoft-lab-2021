@@ -21,6 +21,7 @@ namespace DeliveryServiceEF.Web.Controllers
         }
 
         [HttpGet]
+        [ResponseCache(Duration = 120)]
         public IActionResult Index()
         {
             return View("Index", _productService.GetProducts());
