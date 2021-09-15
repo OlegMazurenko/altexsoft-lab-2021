@@ -21,7 +21,6 @@ namespace DeliveryServiceEF.Web.Controllers
         }
 
         [HttpGet]
-        [ServiceFilter(typeof(ProductActionFilter))]
         public IActionResult Index()
         {
             return View("Index", _productService.GetProducts());
@@ -40,6 +39,7 @@ namespace DeliveryServiceEF.Web.Controllers
         }
 
         [HttpPost("create")]
+        [ServiceFilter(typeof(ProductActionFilter))]
         public IActionResult Create(Product product)
         {
             if (ModelState.IsValid)
