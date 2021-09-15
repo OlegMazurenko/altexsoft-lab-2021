@@ -10,34 +10,34 @@ namespace DeliveryServiceEF.Domain.Services
 {
     public class ProductService : IProductService
     {
-        private IUnitOfWork UnitOfWork { get; }
+        private readonly IUnitOfWork _unitOfWork;
 
         public ProductService(IUnitOfWork unitOfWork)
         {
-            UnitOfWork = unitOfWork;
+            _unitOfWork = unitOfWork;
         }
 
         public Product GetProduct(int id)
         {
-            return UnitOfWork.Products.GetById(id);
+            return _unitOfWork.Products.GetById(id);
         }
 
         public IEnumerable<Product> GetProducts()
         {
-            return UnitOfWork.Products.GetAll();
+            return _unitOfWork.Products.GetAll();
         }
 
         public void AddProduct(Product product)
         {
-            UnitOfWork.Products.Add(product);
-            UnitOfWork.Save();
+            _unitOfWork.Products.Add(product);
+            _unitOfWork.Save();
         }
 
         public void DeleteProduct(int id)
         {
-            var product = UnitOfWork.Products.GetById(id);
-            UnitOfWork.Products.Remove(product);
-            UnitOfWork.Save();
+            var product = _unitOfWork.Products.GetById(id);
+            _unitOfWork.Products.Remove(product);
+            _unitOfWork.Save();
         }
     }
 }

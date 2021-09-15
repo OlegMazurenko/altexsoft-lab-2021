@@ -10,34 +10,34 @@ namespace DeliveryServiceEF.Domain.Services
 {
     public class UserService : IUserService
     {
-        private IUnitOfWork UnitOfWork { get; }
+        private readonly IUnitOfWork _unitOfWork;
 
         public UserService(IUnitOfWork unitOfWork)
         {
-            UnitOfWork = unitOfWork;
+            _unitOfWork = unitOfWork;
         }
 
         public User GetUser(int id)
         {
-            return UnitOfWork.Users.GetById(id);
+            return _unitOfWork.Users.GetById(id);
         }
 
         public IEnumerable<User> GetUsers()
         {
-            return UnitOfWork.Users.GetAll();
+            return _unitOfWork.Users.GetAll();
         }
 
         public void AddUser(User user)
         {
-            UnitOfWork.Users.Add(user);
-            UnitOfWork.Save();
+            _unitOfWork.Users.Add(user);
+            _unitOfWork.Save();
         }
 
         public void DeleteUser(int id)
         {
-            var user = UnitOfWork.Users.GetById(id);
-            UnitOfWork.Users.Remove(user);
-            UnitOfWork.Save();
+            var user = _unitOfWork.Users.GetById(id);
+            _unitOfWork.Users.Remove(user);
+            _unitOfWork.Save();
         }
     }
 }
