@@ -22,13 +22,13 @@ namespace DeliveryServiceEF.Web.Filters
 
         public void OnException(ExceptionContext context)
         {
-            if (_env.IsEnvironment("Production"))
+            if (_env.IsProduction())
             {
                 _logger.LogInformation($"Error: {context.Exception.Message}");
             }
             else
             {
-                _logger.LogInformation($"Error: {context.Exception.Message} {context.Exception.StackTrace}");
+                _logger.LogError($"Error: {context.Exception.Message} {context.Exception.StackTrace}");
             }
             context.ExceptionHandled = true;
         }
