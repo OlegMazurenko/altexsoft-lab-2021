@@ -24,7 +24,7 @@ namespace DeliveryServiceEF.Web.Filters
         {
             if (_env.IsProduction())
             {
-                _logger.LogInformation($"Error: {context.Exception.Message}");
+                _logger.LogError($"Error: {context.Exception.Message}");
             }
             else
             {
